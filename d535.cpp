@@ -1,51 +1,48 @@
 #include <iostream>
 using namespace std;
-
 int main(){
  	char x[31];
-	while (cin >> x){
-		//s是條件
-		int s = 1, s3 = 1, m, s4 = 1, s5 = 1;
-		//條件1 
-		if(x[0] != 0 && x[1] != 0 && x[2] != 0 && x[3] != 0 && x[4] != 0 && x[5] != 0 && x[6] != 0 && x[7] != 0 && x[8] != 0 && x[9] != 0 && x[10] != 0 && x[11] != 0 && x[12] != 0 && x[13] != 0 && x[14] != 0 && x[15] != 0 && x[16] != 0 && x[17] != 0 && x[18] != 0 && x[19] != 0 && x[20] != 0 && x[21] != 0 && x[22] != 0 && x[23] != 0 && x[24] != 0 && x[25] != 0 && x[26] != 0 && x[27] != 0 && x[28] != 0 && x[29] != 0 && x[30] != 0){
-		cout << "INCORRECT";
-		s = 0;
+	while ( cin >> x ){
+		//條件1(不用)
+		//條件2
+		int s = 1, m;
+		for(int t = 0 ; t < 31 ; t ++){
+		  if ( x[t] == 0 && s == 1 ){
+		     s = 0;
+		     m = t;
+		  }
 		}
-		//條件2 
+		s = 1;
+		for(int t = 0 ; t < (m + 1) / 2 ; t ++){
+		  if( x[t] != x[m - 1 - t] ){
+		    cout << "INCORRECT";
+		    s = 0;
+			continue;
+		  }
+		}
+		if ( s == 0 ){
+			continue;
+		}
+		//條件3
+		for( int t = 0 ; t < m - 1 ; t ++ ){
+		if( x[t + 1] - '0' > (x[t] - '0') * 2){
+		    cout << "INCORRECT";
+		    s = 0;
+			continue;
+		  }
+		}
+		if ( s == 0 ){
+			continue;
+		}
+		//輸出
+		s = 1;
+		for( int t = 0 ; t < m ; t ++ ){
+		  if( x[t] % 2 == 0 ){
+			  cout << x[t];
+		    s = 0;
+		  }
+		}
 		if(s == 1){
-		  int s2 = 1;
-		  for(int t = 0 ; t < 31 ; t ++){
-		    if(x[t] == 0 && s2 == 1){
-		      s2 = 0;
-		      m = t;
-		    }
-		  }
-		  for(int t = 0 ; t < (m + 1) / 2 ; t ++){
-		    if(x[t] != x[m - 1 - t] && s3 == 1){
-		      s3 = 0;
-		      cout << "INCORRECT";
-		    }
-		  }
-		}
-		//條件3 
-		if(s == 1 && s3 == 1){
-		  for(int t = 0 ; t < m - 1 ; t ++){
-			if(s4 == 1 && x[t + 1] - 48 > (x[t] - 48) * 2){
-		      s4 = 0;
-		      cout << "INCORRECT";
-		    }
-		  }
-		}
-		//輸出 
-		if(s == 1 && s3 == 1 && s4 == 1){
-		  for(int t = 0 ; t < m ; t ++){
-			if(x[t] % 2 == 0){
-				cout << x[t];
-		    	s5 = 0;
-		    }
-		  }
-		}
-		if(s == 1 && s3 == 1 && s4 == 1 && s5 == 1){
 			cout << "0";
 		}
 	}
